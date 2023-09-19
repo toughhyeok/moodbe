@@ -39,24 +39,22 @@
     <section class="py-5">
       <div class="container px-4 px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-          <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0"
-              src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg" alt="..." /></div>
+          <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="../static/image/adoy_blanc.jpeg"
+              alt="adoy_blanc" /></div>
           <div class="col-md-6">
-            <div class="small mb-1">SKU: BST-498</div>
-            <h1 class="display-5 fw-bolder">Shop item template</h1>
+            <div class="small mb-1">2023.09.19</div>
+            <h1 class="display-5 fw-bolder">ADOY - Blanc</h1>
             <div class="fs-5 mb-5">
-              <span class="text-decoration-line-through">$45.00</span>
-              <span>$40.00</span>
+              <span>(feat. George)</span>
             </div>
-            <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi.
-              Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea
-              iste laborum vero?</p>
+            <p class="lead">
+              오늘의 노래는 "ADOY"의 "Blanc"에요.
+              "You make me drop this way"라는 가사처럼 "Blanc"의 고조되는 비트와 "George"의 목소리에 푹 빠져보는 건 어떨까요?
+            </p>
             <div class="d-flex">
-              <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1"
-                style="max-width: 3rem" />
               <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                <i class="bi-cart-fill me-1"></i>
-                Add to cart
+                <i class="bi-youtube me-1"></i>
+                Youtube에서 음악 듣기
               </button>
             </div>
           </div>
@@ -66,19 +64,21 @@
     <!-- Related items section-->
     <section class="py-5 bg-light">
       <div class="container px-4 px-lg-5 mt-5">
-        <h2 class="fw-bolder mb-4">Related products</h2>
+        <h2 class="fw-bolder mb-4">다른 추천 곡</h2>
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
           <div class="col mb-5">
             <div class="card h-100">
+              <!-- Sale badge-->
+              <div class="badge bg-success text-white position-absolute" style="top: 0.5rem; right: 0.5rem">New</div>
               <!-- Product image-->
-              <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+              <img class="card-img-top" src="../static/image/adoy_blanc.jpeg" alt="..." />
               <!-- Product details-->
               <div class="card-body p-4">
                 <div class="text-center">
                   <!-- Product name-->
-                  <h5 class="fw-bolder">Fancy Product</h5>
+                  <h5 class="fw-bolder">ADOY - Blanc</h5>
                   <!-- Product price-->
-                  $40.00 - $80.00
+                  (feat. George)
                 </div>
               </div>
               <!-- Product actions-->
