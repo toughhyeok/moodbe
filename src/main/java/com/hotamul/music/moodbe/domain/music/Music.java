@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
+@Table(name = "MUSIC")
 public class Music extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,6 +29,7 @@ public class Music extends BaseTimeEntity {
     @Column(length = 500, nullable = false)
     private String youtubeUrl;
 
+    @Column(length = 500)
     private String feat;
 
     @Column(length = 500, nullable = false)

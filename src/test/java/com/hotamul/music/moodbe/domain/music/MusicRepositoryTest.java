@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.transaction.Transactional;
@@ -12,6 +14,7 @@ import javax.transaction.Transactional;
 @Transactional
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+@TestPropertySource("classpath:application-test.properties")
 public class MusicRepositoryTest {
     @Autowired
     MusicRepository musicRepository;
@@ -45,5 +48,18 @@ public class MusicRepositoryTest {
                 .youtubeUrl("http://test.com").build());
         Music music = musicRepository.findAll().get(0);
         Assertions.assertThat(music.getCreatedDate()).isNotNull();
+    }
+
+    @Test
+    public void findLatest_should_return_one_Music() {
+        musicRepository.save(Music.builder()
+                .title("Blanc")
+                .content("This Song is Good!!")
+                .author("ADOY")
+                .feat("George")
+                .imageName("adoy_blanc")
+                .youtubeUrl("http://test.com").build());
+        Music music = musicRepository.findLatest();
+        Assertions.assertThat(music).isNotNull();
     }
 }
