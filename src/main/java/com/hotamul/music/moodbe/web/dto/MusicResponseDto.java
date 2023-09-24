@@ -2,10 +2,12 @@ package com.hotamul.music.moodbe.web.dto;
 
 import com.hotamul.music.moodbe.domain.music.Music;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Getter
+@NoArgsConstructor
 public class MusicResponseDto {
     private Long id;
     private LocalDateTime createdDate;
