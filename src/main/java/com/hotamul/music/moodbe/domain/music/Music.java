@@ -33,15 +33,15 @@ public class Music extends BaseTimeEntity {
     private String feat;
 
     @Column(length = 500, nullable = false)
-    private String imageName;
+    private String imagePath;
 
     @Builder
-    public Music(String title, String content, String author, String youtubeUrl, String feat, String imageName) {
+    public Music(String title, String content, String author, String youtubeUrl, String feat, String imagePath) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.youtubeUrl = youtubeUrl;
         this.feat = feat;
-        this.imageName = imageName;
+        this.imagePath = imagePath;
     }
 }

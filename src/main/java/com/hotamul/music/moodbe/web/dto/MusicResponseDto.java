@@ -14,7 +14,7 @@ public class MusicResponseDto {
     private String author;
     private String youtubeUrl;
     private String feat;
-    private String imageName;
+    private String imagePath;
 
     public MusicResponseDto(Music music) {
         this.id = music.getId();
@@ -24,6 +24,6 @@ public class MusicResponseDto {
         this.author = music.getAuthor();
         this.youtubeUrl = music.getYoutubeUrl();
         this.feat = music.getFeat();
-        this.imageName = music.getImageName();
+        this.imagePath = music.getImagePath();
     }
 }

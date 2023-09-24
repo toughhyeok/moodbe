@@ -22,7 +22,7 @@ public class MusicRepositoryTest {
                 .content("This Song is Good!!")
                 .author("ADOY")
                 .feat("George")
-                .imageName("adoy_blanc")
+                .imagePath("http://adoy_blanc.jpg")
                 .youtubeUrl("http://test.com").build();
         musicRepository.save(music);
         Assertions.assertThat(musicRepository.findAll().size()).isEqualTo(1);
@@ -40,7 +40,7 @@ public class MusicRepositoryTest {
                 .content("This Song is Good!!")
                 .author("ADOY")
                 .feat("George")
-                .imageName("adoy_blanc")
+                .imagePath("http://adoy_blanc.jpg")
                 .youtubeUrl("http://test.com").build());
         Music music = musicRepository.findAll().get(0);
         Assertions.assertThat(music.getCreatedDate()).isNotNull();
@@ -53,7 +53,7 @@ public class MusicRepositoryTest {
                 .content("This Song is Good!!")
                 .author("ADOY")
                 .feat("George")
-                .imageName("adoy_blanc")
+                .imagePath("http://adoy_blanc.jpg")
                 .youtubeUrl("http://test.com").build());
         Music music = musicRepository.findLatest();
         Assertions.assertThat(music).isNotNull();
