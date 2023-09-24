@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("music")
@@ -17,5 +19,10 @@ public class MusicController {
     @GetMapping("latest")
     public ResponseEntity<MusicResponseDto> getLatestMusic() {
         return ResponseEntity.ok(service.findLatest());
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<MusicResponseDto>> getAllMusic() {
+        return ResponseEntity.ok(service.findAll());
     }
 }
