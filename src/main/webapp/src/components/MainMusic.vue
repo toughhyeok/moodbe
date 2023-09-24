@@ -39,7 +39,6 @@
 import MainNavBar from './MainNavBar.vue';
 import MainFooter from './MainFooter.vue';
 import MainCardMusic from './MainCardMusic.vue';
-import axios from 'axios';
 
 export default {
   name: 'MainMusic',
@@ -65,7 +64,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/music/latest')
+    this.$axios.get('/music/latest')
       .then(res => {
         this.latestMusic = res.data;
       })
