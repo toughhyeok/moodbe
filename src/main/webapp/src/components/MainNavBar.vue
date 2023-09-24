@@ -7,12 +7,12 @@
           class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-          <li class="nav-item"><a class="nav-link active" href="#!">About</a></li>
+          <li class="nav-item"><a class="nav-link inactive" href="#!">About</a></li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">Music</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#!">All Music</a></li>
+              <li><a class="dropdown-item" href="#page-all-music">All Music</a></li>
               <!-- # TODO for new feature
               <li>
                 <hr class="dropdown-divider" />
@@ -23,7 +23,7 @@
           </li>
         </ul>
         <form class="d-flex">
-          <button class="btn btn-outline-dark" type="submit">
+          <button class="btn btn-outline-dark" type="submit" disabled>
             <i class="bi-person-fill me-1"></i>
             로그인
             <!-- # TODO for reply noti -->

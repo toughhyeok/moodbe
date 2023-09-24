@@ -1,5 +1,5 @@
 <template>
-  <section class="py-5 bg-light">
+  <section id="page-all-music" class="py-5 bg-light">
     <div class="container px-4 px-lg-5 mt-5">
       <h2 class="fw-bolder mb-4">다른 추천 곡</h2>
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
@@ -15,16 +15,12 @@
             <!-- Music details-->
             <div class="card-body p-4">
               <div class="text-center">
-                <!-- Music name-->
+                <!-- Music author name-->
                 <h5 class="fw-bolder">{{ music.author }} - {{ music.title }}</h5>
-                <!-- Music price-->
+                <!-- Music feat-->
                 <p v-if="music.feat">(feat. {{ music.feat }})</p>
               </div>
             </div>
-            <!-- Music actions-->
-            <!-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent disable">
-              <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-            </div> -->
           </div>
         </div>
       </div>
