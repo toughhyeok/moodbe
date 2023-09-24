@@ -10,7 +10,7 @@
           <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" :src=latestMusic.imagePath />
           </div>
           <div class="col-md-6">
-            <div class="small mb-1">{{ latestMusic.createdDate }}</div>
+            <div class="small mb-1">{{ dateFormat(latestMusic.createdDate) }}</div>
             <h1 class="display-5 fw-bolder">{{ latestMusic.author }} - {{ latestMusic.title }}</h1>
             <div class="fs-5 mb-5" v-if="latestMusic.feat">
               <span>(feat. {{ latestMusic.feat }})</span>
@@ -68,6 +68,11 @@ export default {
       .then(res => {
         this.latestMusic = res.data;
       })
+  },
+  methods: {
+    dateFormat(datetime) {
+      return datetime.split('T')[0];
+    }
   }
 }
 </script>
