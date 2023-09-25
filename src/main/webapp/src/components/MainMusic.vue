@@ -2,7 +2,7 @@
   <div class="hello">
 
     <!-- Navigation-->
-    <MainNavBar />
+    <MainNavBar ref="mainNavBar" />
     <!-- Product section-->
     <section class="py-5" v-if="latestMusic.id">
       <div class="container px-4 px-lg-5 my-5">
@@ -29,7 +29,7 @@
       </div>
     </section>
     <!-- Card Music section-->
-    <MainCardMusic @clickMusicCard="setMusicToMain"/>
+    <MainCardMusic @clickMusicCard="setMusicToMain" />
     <!-- Footer-->
     <MainFooter />
   </div>
@@ -66,7 +66,7 @@ export default {
   mounted() {
     this.$axios.get('/music/latest')
       .then(res => {
-        this.setMusicToMain(res.data);
+        this.latestMusic = res.data;
       });
   },
   methods: {
@@ -75,6 +75,7 @@ export default {
     },
     setMusicToMain(music) {
       this.latestMusic = music;
+      this.$refs.mainNavBar.$el.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }
