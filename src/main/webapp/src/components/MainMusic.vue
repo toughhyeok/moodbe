@@ -29,7 +29,7 @@
       </div>
     </section>
     <!-- Card Music section-->
-    <MainCardMusic />
+    <MainCardMusic @clickMusicCard="setMusicToMain"/>
     <!-- Footer-->
     <MainFooter />
   </div>
@@ -66,12 +66,15 @@ export default {
   mounted() {
     this.$axios.get('/music/latest')
       .then(res => {
-        this.latestMusic = res.data;
-      })
+        this.setMusicToMain(res.data);
+      });
   },
   methods: {
     dateFormat(datetime) {
       return datetime.split('T')[0];
+    },
+    setMusicToMain(music) {
+      this.latestMusic = music;
     }
   }
 }
