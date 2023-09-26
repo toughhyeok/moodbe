@@ -2,7 +2,7 @@
   <div class="hello">
 
     <!-- Navigation-->
-    <MainNavBar ref="mainNavBar" @onClickAllMusic="scrollTo('mainNavBar')" />
+    <MainNavBar ref="mainNavBar" @onClickAllMusic="scrollTo('mainCardMusic')" />
     <!-- Product section-->
     <section class="py-5" v-if="latestMusic.id">
       <div class="container px-4 px-lg-5 my-5">
@@ -29,7 +29,7 @@
       </div>
     </section>
     <!-- Card Music section-->
-    <MainCardMusic @clickMusicCard="setMusicToMain" />
+    <MainCardMusic ref="mainCardMusic" @clickMusicCard="setMusicToMain" />
     <!-- Footer-->
     <MainFooter />
   </div>

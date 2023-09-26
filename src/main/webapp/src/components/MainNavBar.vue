@@ -8,19 +8,8 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
           <li class="nav-item"><a class="nav-link inactive" href="#!">About</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">Music</a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" @click="onClickAllMusic">All Music</a></li>
-              <!-- # TODO for new feature
-              <li>
-                <hr class="dropdown-divider" />
-              </li>
-              <li><a class="dropdown-item" href="#!">Moodbe</a></li>
-              <li><a class="dropdown-item" href="#!">New Arrivals</a></li> -->
-            </ul>
-          </li>
+          <li class="nav-item active"><a class="nav-link active" style="cursor: pointer;"
+              @click="onClickAllMusic">Music</a></li>
         </ul>
         <form class="d-flex">
           <button class="btn btn-outline-dark" type="submit" disabled>
