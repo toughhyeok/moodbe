@@ -12,7 +12,7 @@
             <a class="nav-link dropdown-toggle active" id="navbarDropdown" href="#" role="button"
               data-bs-toggle="dropdown" aria-expanded="false">Music</a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#page-all-music">All Music</a></li>
+              <li><a class="dropdown-item" @click="onClickAllMusic">All Music</a></li>
               <!-- # TODO for new feature
               <li>
                 <hr class="dropdown-divider" />
@@ -39,6 +39,11 @@
 export default {
   name: 'MainNavBar',
   props: {
+  },
+  methods: {
+    onClickAllMusic() {
+      this.$emit("onClickAllMusic");
+    }
   }
 }
 </script>

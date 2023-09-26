@@ -2,7 +2,7 @@
   <div class="hello">
 
     <!-- Navigation-->
-    <MainNavBar ref="mainNavBar" />
+    <MainNavBar ref="mainNavBar" @onClickAllMusic="scrollTo('mainNavBar')" />
     <!-- Product section-->
     <section class="py-5" v-if="latestMusic.id">
       <div class="container px-4 px-lg-5 my-5">
@@ -75,7 +75,10 @@ export default {
     },
     setMusicToMain(music) {
       this.latestMusic = music;
-      this.$refs.mainNavBar.$el.scrollIntoView({ behavior: 'smooth' });
+      this.scrollTo('mainNavBar')
+    },
+    scrollTo(refName) {
+      this.$refs[refName].$el.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }

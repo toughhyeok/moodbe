@@ -11,7 +11,8 @@
               style="top: 0.5rem; right: 0.5rem">New
             </div>
             <!-- Music image-->
-            <img class="card-img-top" style="cursor: pointer;" @click="clickMusicCard(music)" :src="music.imagePath" :alt="music.author + ' - ' + music.title" />
+            <img class="card-img-top" style="cursor: pointer;" @click="clickMusicCard(music)" :src="music.imagePath"
+              :alt="music.author + ' - ' + music.title" />
             <!-- Music details-->
             <div class="card-body p-4">
               <div class="text-center">
