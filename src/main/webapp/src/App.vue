@@ -1,17 +1,11 @@
 <template>
-  <MainMusic />
+  <router-view></router-view>
 </template>
 
 <script>
-import MainMusic from './components/MainMusic.vue'
-
 export default {
   name: 'App',
-  components: {
-    MainMusic
-  }
 }
 </script>
 
-<style>
-</style>
+<style></style>
