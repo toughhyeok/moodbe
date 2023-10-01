@@ -20,7 +20,7 @@ public class MusicRegisterDto {
                 .title(this.title)
                 .content(this.content)
                 .feat(this.feat)
-                .youtubeUrl(this.imagePath)
+                .youtubeUrl(this.youtubeUrl)
                 .imagePath(this.imagePath).build();
     }
 }
