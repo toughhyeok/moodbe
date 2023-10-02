@@ -12,6 +12,10 @@ import javax.transaction.Transactional;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @TestPropertySource("classpath:application-test.properties")
 public class MusicRepositoryTest {
+    static {
+        System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
+    }
+
     @Autowired
     MusicRepository musicRepository;
 

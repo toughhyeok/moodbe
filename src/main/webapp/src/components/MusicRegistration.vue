@@ -1,8 +1,24 @@
 <template>
   <div class="container">
-    <div class="py-5 text-center">
+    <div class="py-4 text-center">
       <h2>새로운 음악 등록</h2>
     </div>
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-8">
+        <h4 class="mb-3">이미지 다운로드</h4>
+        <b-form @submit="onDownloadUrl">
+          <div class="mb-3">
+            <b-form-group id="input-group-0" label="Youtube URL" label-for="input-0">
+              <b-form-input id="input-0" v-model="youtubeUrl" type="url" placeholder="https://youtube.com/watch?v=*"
+                required></b-form-input>
+            </b-form-group>
+          </div>
+          <button class="btn btn-dark btn-block" type="submit">링크</button>
+        </b-form>
+        <hr class="mb-3">
+      </div>
+    </div>
+
     <div class="row justify-content-md-center">
       <div class="col col-lg-8">
         <h4 class="mb-3">음악 정보</h4>
@@ -21,9 +37,11 @@
           </div>
 
           <div class="mb-3">
-            <b-form-group id="input-group-3" label="이미지 URL" label-for="input-3">
-              <b-form-input id="input-3" v-model="form.imagePath" type="url"
-                placeholder="https://moodbe-storage-2023.s3.ap-northeast-2.amazonaws.com/*" required></b-form-input>
+            <b-form-group id="input-group-3" label-for="input-3">
+              <label for="input-3">이미지 파일 <span class="text-muted">(<b-icon icon="exclamation-circle-fill"></b-icon> 파일 이름
+                  예시: japanese-breakfast-soft-sounds-from-another-planet.jpeg)</span></label>
+              <b-form-file id="input-3" :state="Boolean(form.file)" v-model="form.file" placeholder="파일을 선택하거나 여기에 드롭하세요."
+                drop-placeholder="파일을 여기에 드롭하세요." required></b-form-file>
             </b-form-group>
           </div>
 
@@ -44,12 +62,12 @@
 
           <div class="mb-3">
             <b-form-group id="input-group-6" label="노래 설명" label-for="input-6">
-              <b-form-textarea id="input-6" rows="5" v-model="form.content" type="text" required>
+              <b-form-textarea id="input-6" rows="3" v-model="form.content" type="text" required>
               </b-form-textarea>
             </b-form-group>
           </div>
 
-          <button class="btn btn-dark btn-block" type="submit">저장</button>
+          <button class="mb-5 btn btn-dark btn-block" type="submit">저장</button>
         </b-form>
       </div>
     </div>
@@ -63,10 +81,11 @@ export default {
   },
   data() {
     return {
+      youtubeUrl: '',
       form: {
         author: '',
         title: '',
-        imagePath: '',
+        file: null,
         youtubeUrl: '',
         feat: '',
         content: ''
@@ -75,16 +94,21 @@ export default {
   },
   methods: {
     initForm() {
+      this.youtubeUrl = '';
       this.form.author = '';
       this.form.title = '';
-      this.form.imagePath = '';
+      this.form.file = null;
       this.form.youtubeUrl = '';
       this.form.feat = '';
       this.form.content = '';
     },
     onSubmit(event) {
       event.preventDefault()
-      this.$axios.post('/music/register', this.form)
+      this.$axios.post('/music/register', this.form, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
         .then(res => {
           alert(`${res.data.author} - ${res.data.title} 등록 성공!`)
           this.initForm();
@@ -93,6 +117,17 @@ export default {
           alert(err.message)
         });
     },
+    onDownloadUrl() {
+      const videoId = this.youtubeUrl.split('v=')[1];
+      const downloadUrl = `https://i1.ytimg.com/vi/${videoId}/sddefault.jpg`;
+      var aTag = document.createElement('a');
+      aTag.href = downloadUrl;
+      aTag.target = '_blank'
+      aTag.style.display = 'none';
+      document.body.appendChild(aTag);
+      aTag.click();
+      document.body.removeChild(aTag);
+    }
   }
 }
 </script>

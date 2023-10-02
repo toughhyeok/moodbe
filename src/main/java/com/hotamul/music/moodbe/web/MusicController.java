@@ -4,9 +4,12 @@ import com.hotamul.music.moodbe.service.music.MusicService;
 import com.hotamul.music.moodbe.web.dto.MusicRegisterDto;
 import com.hotamul.music.moodbe.web.dto.MusicResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -26,10 +29,14 @@ public class MusicController {
     }
 
     @PostMapping("register")
-    public ResponseEntity<MusicResponseDto> registerMusic(@RequestBody MusicRegisterDto musicRegisterDto) {
-        if (!musicRegisterDto.getImagePath().startsWith("https://moodbe-storage-2023.s3.ap-northeast-2.amazonaws.com/") ||
-                !musicRegisterDto.getYoutubeUrl().startsWith("https://youtube.com/watch?v="))
+    public ResponseEntity<MusicResponseDto> registerMusic(@RequestParam("author") String author, @RequestParam("title") String title, @RequestParam("content") String content, @RequestParam("file") MultipartFile file, @RequestParam("feat") String feat, @RequestParam("youtubeUrl") String youtubeUrl) throws FileUploadException {
+        MusicRegisterDto musicRegisterDto = new MusicRegisterDto(author, title, content, feat, youtubeUrl, file);
+        if (!musicRegisterDto.getYoutubeUrl().startsWith("https://youtube.com/watch?v="))
             throw new IllegalArgumentException();
-        return ResponseEntity.ok(service.register(musicRegisterDto));
+        try {
+            return ResponseEntity.ok(service.register(musicRegisterDto));
+        } catch (IOException e) {
+            throw new FileUploadException(e);
+        }
     }
 }
