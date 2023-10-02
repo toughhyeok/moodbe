@@ -6,14 +6,17 @@
     <div class="row justify-content-md-center">
       <div class="col col-lg-8">
         <h4 class="mb-3">이미지 다운로드</h4>
-        <b-form @submit="onDownloadUrl">
+        <b-form>
           <div class="mb-3">
             <b-form-group id="input-group-0" label="Youtube URL" label-for="input-0">
               <b-form-input id="input-0" v-model="youtubeUrl" type="url" placeholder="https://youtube.com/watch?v=*"
                 required></b-form-input>
             </b-form-group>
           </div>
-          <button class="btn btn-dark btn-block" type="submit">링크</button>
+          <div class="mb-3">
+            <p><a target="_blank" :href="imageDownloadLink">{{ imageDownloadLink }}</a></p>
+          </div>
+          <button class="btn btn-dark btn-block" type="button" @click="createImageDownloadUrl">링크 생성</button>
         </b-form>
         <hr class="mb-3">
       </div>
@@ -79,9 +82,15 @@ export default {
   name: 'MusicRegistration',
   props: {
   },
+  watch: {
+    youtubeUrl() {
+      if (this.youtubeUrl === '') this.imageDownloadLink = '';
+    }
+  },
   data() {
     return {
       youtubeUrl: '',
+      imageDownloadLink: '',
       form: {
         author: '',
         title: '',
@@ -114,19 +123,18 @@ export default {
           this.initForm();
         })
         .catch(err => {
-          alert(err.message)
+          if (err.response.data.message) alert(err.response.data.message);
+          else alert(err.message);
         });
     },
-    onDownloadUrl() {
+    createImageDownloadUrl() {
       const videoId = this.youtubeUrl.split('v=')[1];
-      const downloadUrl = `https://i1.ytimg.com/vi/${videoId}/sddefault.jpg`;
-      var aTag = document.createElement('a');
-      aTag.href = downloadUrl;
-      aTag.target = '_blank'
-      aTag.style.display = 'none';
-      document.body.appendChild(aTag);
-      aTag.click();
-      document.body.removeChild(aTag);
+      if (!videoId) {
+        alert('Invalid Youtube URL!')
+        this.imageDownloadLink = '';
+        return;
+      }
+      this.imageDownloadLink = `https://i1.ytimg.com/vi/${videoId}/sddefault.jpg`;
     }
   }
 }
