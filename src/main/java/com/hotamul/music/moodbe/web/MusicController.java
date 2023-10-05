@@ -26,7 +26,7 @@ public class MusicController {
 
     @GetMapping("all")
     public ResponseEntity<List<MusicResponseDto>> getAllMusic() {
-        return ResponseEntity.ok(service.findAll());
+        return ResponseEntity.ok(service.findIsPublished());
     }
 
     @PostMapping("register")

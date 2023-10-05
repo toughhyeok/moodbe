@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -35,13 +36,17 @@ public class Music extends BaseTimeEntity {
     @Column(length = 500, nullable = false)
     private String imagePath;
 
+    @ColumnDefault("false")
+    private boolean isPublished = false;
+
     @Builder
-    public Music(String title, String content, String author, String youtubeUrl, String feat, String imagePath) {
+    public Music(String title, String content, String author, String youtubeUrl, String feat, String imagePath, boolean isPublished) {
         this.title = title;
         this.content = content;
         this.author = author;
         this.youtubeUrl = youtubeUrl;
         this.feat = feat;
         this.imagePath = imagePath;
+        this.isPublished = isPublished;
     }
 }

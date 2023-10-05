@@ -8,6 +8,8 @@ import com.hotamul.music.moodbe.web.dto.MusicRegisterDto;
 import com.hotamul.music.moodbe.web.dto.MusicResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +33,13 @@ public class MusicService {
 
     public List<MusicResponseDto> findAll() {
         return musicRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).stream().map(MusicResponseDto::new).collect(Collectors.toList());
+    }
+
+    public List<MusicResponseDto> findIsPublished() {
+        ExampleMatcher ignoringExampleMatcher = ExampleMatcher.matchingAny()
+                .withMatcher("isPublished", ExampleMatcher.GenericPropertyMatchers.exact());
+        Example<Music> musicExample = Example.of(Music.builder().isPublished(true).build(), ignoringExampleMatcher);
+        return musicRepository.findAll(musicExample, Sort.by(Sort.Direction.DESC, "id")).stream().map(MusicResponseDto::new).collect(Collectors.toList());
     }
 
     public MusicResponseDto register(MusicRegisterDto musicRegisterDto) throws IOException {

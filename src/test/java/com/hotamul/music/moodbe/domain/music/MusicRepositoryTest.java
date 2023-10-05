@@ -45,7 +45,8 @@ public class MusicRepositoryTest {
                 .author("ADOY")
                 .feat("George")
                 .imagePath("http://adoy_blanc.jpg")
-                .youtubeUrl("http://test.com").build());
+                .youtubeUrl("http://test.com")
+                .isPublished(true).build());
         Music music = musicRepository.findAll().get(0);
         Assertions.assertThat(music.getCreatedDate()).isNotNull();
     }
@@ -58,7 +59,8 @@ public class MusicRepositoryTest {
                 .author("ADOY")
                 .feat("George")
                 .imagePath("http://adoy_blanc.jpg")
-                .youtubeUrl("http://test.com").build());
+                .youtubeUrl("http://test.com")
+                .isPublished(true).build());
         Music music = musicRepository.findLatest();
         Assertions.assertThat(music).isNotNull();
     }

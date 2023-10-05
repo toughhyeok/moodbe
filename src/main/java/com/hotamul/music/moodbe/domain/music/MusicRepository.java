@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MusicRepository extends JpaRepository<Music, Long> {
 
-    @Query(nativeQuery = true, value = "SELECT * FROM music m ORDER BY m.id DESC LIMIT 1")
+    @Query(nativeQuery = true, value = "SELECT * FROM music m WHERE m.is_published = true ORDER BY m.id DESC LIMIT 1")
     Music findLatest();
 }

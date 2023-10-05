@@ -20,6 +20,10 @@ import java.util.List;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource("classpath:application-test.properties")
 public class MusicControllerTest {
+    static {
+        System.setProperty("com.amazonaws.sdk.disableEc2Metadata", "true");
+    }
+
     @Autowired
     private TestRestTemplate restTemplate;
 
@@ -31,19 +35,20 @@ public class MusicControllerTest {
         musicRepository.deleteAll();
     }
 
-    private void createMusic(String title, String content, String author, String feat, String imagePath, String youtubeUrl) {
+    private void createMusic(String title, String content, String author, String feat, String imagePath, String youtubeUrl, boolean isPublished) {
         musicRepository.save(Music.builder()
                 .title(title)
                 .content(content)
                 .author(author)
                 .feat(feat)
                 .imagePath(imagePath)
-                .youtubeUrl(youtubeUrl).build());
+                .youtubeUrl(youtubeUrl)
+                .isPublished(isPublished).build());
     }
 
     @Test
     public void getLatestMusic_SHOULD_RETURN_status_200_WHENEVER() {
-        createMusic("Blanc", "This Song is Good!", "ADOY", "George", "http://test.com", "http://test.com");
+        createMusic("Blanc", "This Song is Good!", "ADOY", "George", "http://test.com", "http://test.com", true);
 
         ResponseEntity<MusicResponseDto> response = restTemplate.getForEntity("/music/latest", MusicResponseDto.class);
         Assertions.assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -51,8 +56,8 @@ public class MusicControllerTest {
 
     @Test
     public void getAllMusic_SHOULD_RETURN_music_list_order_by_id_desc() {
-        createMusic("Blanc", "This Song is Good!", "ADOY", "George", "http://test.com", "http://test.com");
-        createMusic("애국가", "동해물과 백두산이", "안익태", null, "http://test.com", "http://test.com");
+        createMusic("Blanc", "This Song is Good!", "ADOY", "George", "http://test.com", "http://test.com", true);
+        createMusic("애국가", "동해물과 백두산이", "안익태", null, "http://test.com", "http://test.com", true);
 
         ResponseEntity<List<MusicResponseDto>> response = restTemplate.exchange("/music/all", HttpMethod.GET, null, new ParameterizedTypeReference<List<MusicResponseDto>>() {
         });
