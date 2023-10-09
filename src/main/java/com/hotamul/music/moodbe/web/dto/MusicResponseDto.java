@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public class MusicResponseDto {
     private Long id;
     private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
     private String title;
     private String content;
     private String author;
@@ -21,6 +22,7 @@ public class MusicResponseDto {
     public MusicResponseDto(Music music) {
         this.id = music.getId();
         this.createdDate = music.getCreatedDate();
+        this.modifiedDate = music.getModifiedDate();
         this.title = music.getTitle();
         this.content = music.getContent();
         this.author = music.getAuthor();
