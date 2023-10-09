@@ -38,4 +38,4 @@ out/
 .vscode/
 
 ### AWS ###
-application-aws.properties
+application-aws.yml
