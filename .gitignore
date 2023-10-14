@@ -39,3 +39,6 @@ out/
 
 ### AWS ###
 application-aws.yml
+
+### OAuth ###
+application-oauth.yml
