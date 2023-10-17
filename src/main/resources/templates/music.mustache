@@ -1,0 +1,44 @@
+{{>layout/header}}
+
+{{>layout/navbar}}
+
+<script>
+    const modifiedDate = '{{ music.modifiedDate }}';
+    $( document ).ready(function() {
+        $('#date-section').text(modifiedDate.split('T')[0]);
+    });
+</script>
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            {{#music}}
+                <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{imagePath}}"/>
+                </div>
+                <div class="col-md-6">
+                    <div class="small mb-1" id="date-section"></div>
+                    <h1 class="display-5 fw-bolder">{{ author }} - {{ title }}</h1>
+                    {{#feat}}
+                        <div class="fs-5 mb-5">
+                            <span>(feat. {{ feat }})</span>
+                        </div>
+                    {{/feat}}
+                    {{^feat}}
+                    {{/feat}}
+                    <p class="lead">{{ content }}</p>
+                    <div class="d-flex">
+                        <a href="{{youtubeUrl}}" target="_blank">
+                            <button class="btn btn-outline-dark flex-shrink-0"
+                                    type="button">
+                                <i class="bi-youtube me-1"></i>
+                                Youtube에서 음악 듣기
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            {{/music}}
+        </div>
+    </div>
+</section>
+
+{{>layout/footer}}

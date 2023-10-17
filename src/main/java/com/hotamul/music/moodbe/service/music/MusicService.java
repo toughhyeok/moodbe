@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,10 +27,6 @@ public class MusicService {
 
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
-
-    public MusicResponseDto findLatest() {
-        return new MusicResponseDto(musicRepository.findLatest());
-    }
 
     public List<MusicResponseDto> findAll() {
         return musicRepository.findAll(Sort.by(Sort.Direction.DESC, "id")).stream().map(MusicResponseDto::new).collect(Collectors.toList());
@@ -56,5 +53,9 @@ public class MusicService {
         metadata.setContentType(multipartFile.getContentType());
         amazonS3.putObject(bucket, fileName, multipartFile.getInputStream(), metadata);
         return amazonS3.getUrl(bucket, fileName).toString();
+    }
+
+    public MusicResponseDto findById(Long id) {
+        return new MusicResponseDto(musicRepository.findById(id).orElseThrow(InvalidParameterException::new));
     }
 }

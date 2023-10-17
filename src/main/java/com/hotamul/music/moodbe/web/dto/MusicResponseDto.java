@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Getter
-@NoArgsConstructor
+//@NoArgsConstructor
 public class MusicResponseDto {
     private Long id;
     private LocalDateTime createdDate;

@@ -1,0 +1,39 @@
+{{>layout/header}}
+
+{{>layout/navbar}}
+
+<section class="py-5">
+    {{#allMusic}}
+        <div class="container my-4">
+            <div class="card mb-3 filter shadow-lg mx-auto pt-3 pb-3" style="padding: 0%; border: none; width: 75%;">
+                <div class="row g-0 py-4">
+                    <div class="col-12 col-md-5 d-flex">
+                        <div class="my-auto" style="width: 100%; height: 100%">
+                            <div>
+                                <a href="/music/{{id}}" style="cursor: pointer;">
+                                    <img src="{{imagePath}}" class="d-block w-100"
+                                         alt="{{author}} - {{title}}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-7 py-3 px-md-1 px-1">
+                        <div class="card-body my-auto d-flex align-content-center flex-wrap">
+        <h3 class="card-title">{{author}} - {{title}}{{#feat}} (feat. {{feat}}){{/feat}}{{^feat}}{{/feat}}</h3>
+                            <p class="card-text " style="margin-top: 2%;">{{content}}</p>
+                            <a href="{{youtubeUrl}}" target="_blank">
+                                <button class="btn btn-outline-dark flex-shrink-0"
+                                        type="button">
+                                    <i class="bi-youtube me-1"></i>
+                                    Youtube에서 음악 듣기
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/allMusic}}
+</section>
+
+{{>layout/footer}}
